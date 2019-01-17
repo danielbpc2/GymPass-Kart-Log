@@ -1,3 +1,4 @@
+require_relative 'RacerRecord'
 require 'csv'
 
 LAP_RECORDS = []

@@ -9,6 +9,7 @@ def create_csv_from_txt
       details.each do |record|
         record.delete_at(2)
         record[2] = 'F.MASSA' if record[2] == 'F.MASS'
+        record[5].gsub!(/,/, '.')
         record_lines << record
       end
     end

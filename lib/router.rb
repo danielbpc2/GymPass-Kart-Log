@@ -8,9 +8,6 @@ class Router
   end
 
   def run
-    puts "GymPass - Corridas"
-    puts "           --           "
-
     while @running
       display_tasks
       action = gets.chomp.to_i
@@ -25,7 +22,7 @@ class Router
     case action
     when 1 then @controller.results
     when 2 then @controller.best_laps
-    when 3 then @controller.show_avg
+    when 3 then @controller.show_avg_speed
     when 4 then @controller.racer_difference
     when 5 then stop
     else
@@ -38,7 +35,10 @@ class Router
   end
 
   def display_tasks
-    puts "O que quer fazer?"
+    puts "============================="
+    puts "GymPass - Corridas"
+    puts "============================="
+    puts "Opções:"
     puts "1 - Mostrar Resultados da corrida"
     puts "2 - Mostrar Melhor Volta de Cada Piloto"
     puts "3 - Calcular a velocidade média de cada piloto durante toda corrida"
