@@ -40,9 +40,8 @@ class RacerRecord
 
   #  returns sum of all laps times
   def times_sum
-    times = []
-    self.voltas.each { |lap_num, lap_stat| times << time_in_milisseconds(lap_stat[:tempo])}
-    time_sum = times.sum
+    time_sum = 0
+    self.voltas.each { |lap_num, lap_stat| time_sum += time_in_milisseconds(lap_stat[:tempo])}
     return time_sum
   end
 

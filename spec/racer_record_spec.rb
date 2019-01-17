@@ -10,7 +10,7 @@ extra_mock_racer_daniel = RacerRecord.new("Daniel", "007", {
   "4"=>{:hora=>"11:03:06.000", :tempo=>"1:03.000", :vel_med=>"69.000"}
 })
 
-mock_racer = RACER_RECORDS[-1]
+mock_racer = RACER_RECORDS[0]
 puts "Racer the test is using: {#{mock_racer.piloto},#{mock_racer.codigo}, #{mock_racer.voltas}}"
 
 describe RacerRecord do
@@ -21,6 +21,7 @@ describe RacerRecord do
       best_lap.sort! {|x,y| x[1][:tempo] <=> y[1][:tempo]}
       best_lap = best_lap[0]
       expect(mock_racer.best_lap).to eql(best_lap)
+      puts "Test expects: #{best_lap} result: #{mock_racer.best_lap}"
     end
   end
 
@@ -29,6 +30,7 @@ describe RacerRecord do
         speeds = []
         mock_racer.voltas.each {|lap_num, lap| speeds << lap[:vel_med].to_f}
         expect(mock_racer.avg_speed).to eql(speeds.sum / mock_racer.voltas.length)
+      puts "Test expects: #{speeds.sum / mock_racer.voltas.length} result: #{mock_racer.avg_speed}"
     end
   end
 
@@ -38,6 +40,7 @@ describe RacerRecord do
       mock_racer.voltas.each { |lap_num, lap| lap_times << time_in_milisseconds(lap[:tempo])}
       avg_times = lap_times.sum / lap_times.length
       expect(mock_racer.avg_time_lap).to eql(ms_to_min(avg_times))
+      puts "Test expects: #{ms_to_min(avg_times)} result: #{mock_racer.avg_time_lap}"
     end
   end
 
@@ -45,7 +48,9 @@ describe RacerRecord do
     it 'Sum all lap times in ms and returns it' do
       times = []
       mock_racer.voltas.each { |lap_num, lap| times << time_in_milisseconds(lap[:tempo])}
-
+      times = times.sum
+      expect(mock_racer.times_sum).to eql(times)
+      puts "Test expects: #{times} result: #{mock_racer.times_sum}"
     end
   end
 end
