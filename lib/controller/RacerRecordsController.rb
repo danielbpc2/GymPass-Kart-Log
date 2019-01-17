@@ -27,7 +27,7 @@ class RacerRecordsController
   # sends an array with individual average times and sends to view to display
   def show_avg_time
     avg_times = []
-    RACER_RECORDS.each {|racer| avg_times << [ racer.piloto, racer.avg_time ]}
+    RACER_RECORDS.each {|racer| avg_times << [ racer.piloto, racer.avg_time_lap ]}
     @view.display_avg_times(avg_times)
   end
 

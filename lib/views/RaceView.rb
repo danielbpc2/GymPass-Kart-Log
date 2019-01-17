@@ -22,7 +22,7 @@ class RaceView
     puts("Tempo Médio De Voltas:")
     puts("---------------")
     avg_times.each do |array|
-    puts "#{array[0]} - Tempo Médio: #{array[1]}"
+    puts "#{array[0]} - Tempo Médio: #{array[1].round(2)} minutos"
     end
     puts("---------------")
   end
