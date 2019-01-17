@@ -5,7 +5,7 @@ require_relative '../utils/helpers'
 class RacerRecordsController
   def initialize
     # Load csv and instanciate all race records
-    RacerRecord.load_all_records
+    RacerRecord.load_all_records('./db/kart_log.csv')
     # create view
     @view = RaceView.new
   end

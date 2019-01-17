@@ -16,7 +16,7 @@ class RacerRecord
   #  returns racer best lap
   def best_lap
     best_lap = []
-    self.voltas.each { |key, value| best_lap << [key, value] }
+    self.voltas.each { |lap_num, lap_stat| best_lap << [lap_num, lap_stat] }
     best_lap.sort! {|x,y| x[1][:tempo] <=> y[1][:tempo]}
     best_lap = best_lap[0]
     return best_lap
@@ -25,7 +25,7 @@ class RacerRecord
   #  returns racer average speed through the race
   def avg_speed
     speeds = []
-    self.voltas.each { |key, value| speeds << value[:vel_med].to_f}
+    self.voltas.each { |lap_num, lap_stat| speeds << lap_stat[:vel_med].to_f}
     avg_speed = speeds.sum / speeds.length
     return avg_speed
   end
@@ -33,7 +33,7 @@ class RacerRecord
   #  returns racer average time laps through the race
   def avg_time_lap
     times = []
-    self.voltas.each { |key, value| times << time_in_milisseconds(value[:tempo])}
+    self.voltas.each { |lap_num, lap_stat| times << time_in_milisseconds(lap_stat[:tempo])}
     avg_times = times.sum / times.length
     return ms_to_min(avg_times)
   end
@@ -41,15 +41,15 @@ class RacerRecord
   #  returns sum of all laps times
   def times_sum
     times = []
-    self.voltas.each { |key, value| times << time_in_milisseconds(value[:tempo])}
+    self.voltas.each { |lap_num, lap_stat| times << time_in_milisseconds(lap_stat[:tempo])}
     time_sum = times.sum
     return time_sum
   end
 
   # Load csv and instanciate all race records
-  def self.load_all_records
+  def self.load_all_records(csv_file_path)
     racers_hash = {}
-    filepath = './db/kart_log.csv'
+    filepath = csv_file_path
     csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
     CSV.foreach(filepath, csv_options) do |row|
       racers_hash[row["Piloto"]] = {} if racers_hash[row["Piloto"]] == nil
@@ -57,8 +57,8 @@ class RacerRecord
       racers_hash[row["Piloto"]].store(:voltas, {}) if racers_hash[row["Piloto"]][:voltas] == nil
       racers_hash[row["Piloto"]][:voltas].store( row["Nº Volta"], {hora: row["Hora"], tempo: row["Tempo da Volta"], vel_med: row["Velocidade média da volta"]})
     end
-    racers_hash.each do |key, value|
-      RacerRecord.new(key, value[:codigo], value[:voltas])
+    racers_hash.each do |lap_num, lap_stat|
+      RacerRecord.new(lap_num, lap_stat[:codigo], lap_stat[:voltas])
     end
   end
 end
