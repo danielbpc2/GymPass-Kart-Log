@@ -1,5 +1,5 @@
-require_relative '../model/RacerRecord'
-require_relative '../views/RaceView'
+require_relative '../model/racer_record'
+require_relative '../views/race_view'
 require_relative '../utils/helpers'
 
 class RacerRecordsController

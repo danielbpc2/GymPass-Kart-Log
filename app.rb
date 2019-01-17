@@ -1,5 +1,5 @@
-require_relative './lib/model/RacerRecord'
-require_relative './lib/controller/RacerRecordsController'
+require_relative './lib/model/racer_record'
+require_relative './lib/controller/racer_records_controller'
 require_relative './lib/router'
 require_relative './lib/utils/log_parser'
 
