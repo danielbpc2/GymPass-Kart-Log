@@ -26,8 +26,8 @@ class LapRecord
     end
   end
 
-  def self.save_all_Records
-    filepath = './db/kart_log.csv'
+  def self.save_all_Records(csv_file_path)
+    filepath = csv_file_path
     csv_options = { col_sep: ',', force_quotes: true, quote_char: '"' }
     CSV.open(filepath, "wb", csv_options) do |csv|
       csv << ["Hora", "Codigo", "Piloto", "Nº Volta", "Tempo da Volta", "Velocidade média da volta"]

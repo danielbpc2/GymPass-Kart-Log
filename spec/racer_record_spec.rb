@@ -2,7 +2,10 @@ require 'rspec'
 require_relative '../lib/model/racer_record'
 require_relative '../lib/utils/helpers'
 
-RacerRecord.load_all_records('./spec/mock_db/kart_log.csv')
+csv_file_path = './spec/mock_db/kart_log.csv'
+
+RacerRecord.load_all_records(csv_file_path)
+
 extra_mock_racer_daniel = RacerRecord.new("Daniel", "007", {
   "1"=>{:hora=>"11:00:00.666", :tempo=>"1:00.444", :vel_med=>"69.000"},
   "2"=>{:hora=>"11:01:02.000", :tempo=>"1:01.000", :vel_med=>"69.000"},
@@ -51,6 +54,24 @@ describe RacerRecord do
       times = times.sum
       expect(mock_racer.times_sum).to eql(times)
       puts "Test expects: #{times} result: #{mock_racer.times_sum}"
+    end
+  end
+
+  describe '.load_all_records' do
+    it 'opens a csv and instanciate a RaceRecord for each line' do
+      racers_hash = {}
+      racers_counter = 0
+      filepath = csv_file_path
+      csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+      CSV.foreach(filepath, csv_options) do |row|
+        racers_hash[row["Piloto"]] = {} if racers_hash[row["Piloto"]] == nil
+        racers_hash[row["Piloto"]].store(:codigo, row["Codigo"]) if racers_hash[row["Piloto"]][:codigo] == nil
+        racers_hash[row["Piloto"]].store(:voltas, {}) if racers_hash[row["Piloto"]][:voltas] == nil
+        racers_hash[row["Piloto"]][:voltas].store( row["Nº Volta"], {hora: row["Hora"], tempo: row["Tempo da Volta"], vel_med: row["Velocidade média da volta"]})
+      end
+      racers_hash.each {|x,y| racers_counter += 1 }
+      expect(RACER_RECORDS.length).to eql(racers_counter + 1) #Added the mock racer created in this test file
+      puts "Test expects RACER_RECORDS.length + 1 mock racer to be: #{racers_counter + 1} result: #{RACER_RECORDS.length}"
     end
   end
 end
