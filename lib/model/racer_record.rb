@@ -1,3 +1,4 @@
+# All racer records saved in this constant
 RACER_RECORDS = []
 
 class RacerRecord
@@ -7,6 +8,7 @@ class RacerRecord
     @piloto = piloto
     @codigo = codigo
     @voltas = n_volta
+    # saves the instance inside the RACER_RECORDS constant
     RACER_RECORDS << self
   end
 
