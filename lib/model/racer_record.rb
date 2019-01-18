@@ -29,14 +29,14 @@ class RacerRecord
   #  returns racer average time laps through the race
   def avg_time_lap
     times = []
-    self.voltas.each { |lap_num, lap_stat| times << time_in_milisseconds(lap_stat[:tempo])}
+    self.voltas.each { |lap_num, lap_stat| times << time_in_ms(lap_stat[:tempo])}
     return ms_to_min(get_avg(times))
   end
 
   #  returns sum of all laps times
   def times_sum
     time_sum = 0
-    self.voltas.each { |lap_num, lap_stat| time_sum += time_in_milisseconds(lap_stat[:tempo])}
+    self.voltas.each { |lap_num, lap_stat| time_sum += time_in_ms(lap_stat[:tempo])}
     return time_sum
   end
 

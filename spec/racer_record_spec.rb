@@ -47,7 +47,7 @@ describe RacerRecord do
 
   describe '#avg_time_lap' do
     lap_times = []
-    mock_racer.voltas.each { |lap_num, lap| lap_times << time_in_milisseconds(lap[:tempo])}
+    mock_racer.voltas.each { |lap_num, lap| lap_times << time_in_ms(lap[:tempo])}
     avg_times = lap_times.sum / lap_times.length
 
     it 'Sum all lap times turn into millisseconds and divide by number of laps and return the average time lap in minutes' do
@@ -62,7 +62,7 @@ describe RacerRecord do
 
   describe '#times_sum' do
     times = []
-    mock_racer.voltas.each { |lap_num, lap| times << time_in_milisseconds(lap[:tempo])}
+    mock_racer.voltas.each { |lap_num, lap| times << time_in_ms(lap[:tempo])}
     times = times.sum
     it 'Sum all lap times in ms and returns it' do
       expect(mock_racer.times_sum).to eql(times)

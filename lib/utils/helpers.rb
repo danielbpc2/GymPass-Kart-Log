@@ -1,4 +1,5 @@
-def time_in_milisseconds(time)
+# takes time displayed like : Min:Seg.Ms and turns into ms
+def time_in_ms(time)
   time_string = time.split(':')
 
   milliseconds = time_string.last.split('.').last
@@ -6,7 +7,7 @@ def time_in_milisseconds(time)
   minutes = time_string.first.to_i * 60000
   return totalmilliseconds + minutes
 end
-
+# turns a amount of
 def ms_to_min(ms)
   tempo = (ms.to_f / 1000) / 60
   return tempo
