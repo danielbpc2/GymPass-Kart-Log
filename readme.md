@@ -18,7 +18,7 @@ Dentro deste escolha uma das 6 opções.
 3 - Calcular a velocidade média de cada piloto durante toda corrida
 4 - Calcular a tempo médio de cada volta de cada piloto
 5 - Descobrir quanto tempo cada piloto chegou após o vencedor
-6 - Stop and exit the program
+6 - Parar e sair do programa
 ```
 ### Testes
 

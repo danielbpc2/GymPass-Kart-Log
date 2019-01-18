@@ -42,6 +42,6 @@ class Router
     puts "3 - Calcular a velocidade média de cada piloto durante toda corrida"
     puts "4 - Calcular a tempo médio de cada volta de cada piloto"
     puts "5 - Descobrir quanto tempo cada piloto chegou após o vencedor"
-    puts "6 - Stop and exit the program"
+    puts "6 - Parar e sair do programa"
   end
 end
