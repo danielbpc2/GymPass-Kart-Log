@@ -7,12 +7,14 @@ def time_in_ms(time)
   minutes = time_string.first.to_i * 60000
   return totalmilliseconds + minutes
 end
-# turns a amount of
+
+# turns a amount of ms into minutes
 def ms_to_min(ms)
   tempo = (ms.to_f / 1000) / 60
   return tempo
 end
 
+# simply makes an average of an array
 def get_avg(array)
   return array.sum / array.length
 end
