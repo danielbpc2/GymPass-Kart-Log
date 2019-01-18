@@ -1,12 +1,9 @@
-require 'csv'
-require_relative '../utils/helpers'
-
 RACER_RECORDS = []
 
 class RacerRecord
   attr_reader :codigo, :piloto, :voltas
 
-  def initialize(piloto, codigo, n_volta )
+  def initialize(piloto, codigo, n_volta = {})
     @piloto = piloto
     @codigo = codigo
     @voltas = n_volta
@@ -43,6 +40,7 @@ class RacerRecord
     return time_sum
   end
 
+  private
   # Load csv and instanciate all race records
   def self.load_all_records(csv_file_path)
     racers_hash = {}

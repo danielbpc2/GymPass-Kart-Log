@@ -1,14 +1,15 @@
-# informações: Posição Chegada, Código Piloto, Nome Piloto, Qtde Voltas Completadas e Tempo Total de Prova.
 class RaceView
+  # Printa resultados da corrida no console
   def display_results(results, total_time)
-    puts("Resultados da Corrida:")
+    puts("Tempo Total de Prova: #{total_time[0].round(2)} minutos - Resultados da Corrida:")
     puts("---------------")
     results.each do |key, value|
-    puts "\##{key}: #{value.codigo} - #{value.piloto}, Voltas Completadas: #{value.voltas.keys.length}, Tempo Total de Prova: #{total_time[key]} minutos"
+    puts "\##{key}: #{value.codigo} - #{value.piloto}, Voltas Completadas: #{value.voltas.keys.length}, Tempo Total de Prova: #{total_time[1][key].round(2)} minutos"
     end
     puts("---------------")
   end
 
+  # Printa os melhores tempos individuais no console
   def display_best_laps(best_laps)
     puts("Melhores Tempos Individuais:")
     puts("---------------")
@@ -18,6 +19,7 @@ class RaceView
     puts("---------------")
   end
 
+  # Printa os tempos medios individuais no console
   def display_avg_times(avg_times)
     puts("Tempo Médio De Voltas:")
     puts("---------------")
@@ -27,6 +29,7 @@ class RaceView
     puts("---------------")
   end
 
+  # Printa os a média de velocidade individuais no console
   def display_avg_speeds(avg_speeds)
     puts("Velocidade Média Das Voltas:")
     puts("---------------")
@@ -36,6 +39,7 @@ class RaceView
     puts("---------------")
   end
 
+  # Printa quanto tempo levou cada piloto após o vencedor no console
   def display_time_from_first(times, winner_time)
     puts("Quanto Tempo Cada Piloto Chegou Após o Vencedor:")
     puts("---------------")

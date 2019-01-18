@@ -1,19 +1,12 @@
 require 'rspec'
+require 'csv'
 require_relative '../lib/model/racer_record'
 require_relative '../lib/utils/helpers'
 
-csv_file_path = './spec/mock_db/kart_log.csv'
-
-RacerRecord.load_all_records(csv_file_path)
-
-extra_mock_racer_daniel = RacerRecord.new("Daniel", "007", {
-  "1"=>{:hora=>"11:00:00.666", :tempo=>"1:00.444", :vel_med=>"69.000"},
-  "2"=>{:hora=>"11:01:02.000", :tempo=>"1:01.000", :vel_med=>"69.000"},
-  "3"=>{:hora=>"11:02:03.000", :tempo=>"1:02.000", :vel_med=>"69.000"},
-  "4"=>{:hora=>"11:03:06.000", :tempo=>"1:03.000", :vel_med=>"69.000"}
-})
+csv_file_path = './db/kart_log.csv'
 
 mock_racer = RACER_RECORDS[-1]
+
 puts "Racer the test is using: {#{mock_racer.piloto},#{mock_racer.codigo}, #{mock_racer.voltas}}"
 
 describe RacerRecord do
@@ -29,8 +22,7 @@ describe RacerRecord do
     end
 
     it 'should return an array with index 0 lap number and index 1 hash with lap stats' do
-      expect(mock_racer.best_lap[0]).to eql(best_lap[0])
-      expect(mock_racer.best_lap[1]).to eql(best_lap[1])
+      expect(mock_racer.best_lap).to include(best_lap[0], best_lap[1])
     end
 
     it 'returns the correct best_lap([lap number, hash with stats])' do
@@ -83,7 +75,6 @@ describe RacerRecord do
   end
 
   describe '.load_all_records' do
-    it 'opens a csv and instanciate a RaceRecord for each line' do
       racers_hash = {}
       racers_counter = 0
       filepath = csv_file_path
@@ -95,9 +86,14 @@ describe RacerRecord do
         racers_hash[row["Piloto"]][:voltas].store( row["Nº Volta"], {hora: row["Hora"], tempo: row["Tempo da Volta"], vel_med: row["Velocidade média da volta"]})
       end
       racers_hash.each {|x,y| racers_counter += 1 }
+
+    it 'opens a csv and instanciate a RaceRecord for each line' do
       expect(RACER_RECORDS.length).to eql(racers_counter + 1) #Added the mock racer created in this test file
       puts "Test expects RACER_RECORDS.length + 1 mock racer to be: #{racers_counter + 1} result: #{RACER_RECORDS.length}"
     end
+
+    it 'should create instances of RaceRecord' do
+      expect(RACER_RECORDS[0]).to be_a RacerRecord
+    end
   end
 end
-
