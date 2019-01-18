@@ -1,8 +1,9 @@
 require 'csv'
 
-def create_csv_from_txt
+# Takes a TXT and create a CSV of it and return a string with its directory
+def create_csv_from_txt(txt_file_path)
   record_lines = []
-  File.open('./db/kart_log.txt', "r") do |f|
+  File.open(txt_file_path, "r") do |f|
     f.each_line do |line|
       details = []
       details << line.split(' ') unless line[0] == 'H'
@@ -19,4 +20,5 @@ def create_csv_from_txt
     csv << ["Hora", "Codigo", "Piloto", "Nº Volta", "Tempo da Volta", "Velocidade média da volta"]
     record_lines.each {|line| csv <<  line}
   end
+  return "./db/kart_log.csv"
 end

@@ -12,3 +12,6 @@ def ms_to_min(ms)
   return tempo
 end
 
+def get_avg(array)
+  return array.sum / array.length
+end

@@ -26,16 +26,14 @@ class RacerRecord
   def avg_speed
     speeds = []
     self.voltas.each { |lap_num, lap_stat| speeds << lap_stat[:vel_med].to_f}
-    avg_speed = speeds.sum / speeds.length
-    return avg_speed
+    return get_avg(speeds)
   end
 
   #  returns racer average time laps through the race
   def avg_time_lap
     times = []
     self.voltas.each { |lap_num, lap_stat| times << time_in_milisseconds(lap_stat[:tempo])}
-    avg_times = times.sum / times.length
-    return ms_to_min(avg_times)
+    return ms_to_min(get_avg(times))
   end
 
   #  returns sum of all laps times
