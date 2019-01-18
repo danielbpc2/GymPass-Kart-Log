@@ -17,7 +17,7 @@ class RacerRecordsController
   end
 
   # sends an array of the best laps to view to display
-  # envia um arrai com as melhores voltas para a view mostrar
+  # envia um array com as melhores voltas para a view mostrar
   def best_laps
     best_laps = []
     RACER_RECORDS.each {|racer| best_laps << [ racer.piloto, racer.best_lap ]}

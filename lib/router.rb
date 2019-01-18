@@ -3,7 +3,7 @@ class Router
     @controller = controller
     @running = true
   end
-
+# roda o app entrando em loop
   def run
     while @running
       display_tasks
@@ -14,7 +14,7 @@ class Router
   end
 
   private
-
+# ações que o user pode fazer
   def route_action(action)
     case action
     when 1 then @controller.results
@@ -28,10 +28,11 @@ class Router
     end
   end
 
+# para o router
   def stop
     @running = false
   end
-
+# print do console:
   def display_tasks
     puts "============================="
     puts "GymPass - Corridas"

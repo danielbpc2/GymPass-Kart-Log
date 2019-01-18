@@ -22,7 +22,7 @@ Dentro deste escolha uma das 6 opções.
 ```
 ### Testes
 
-Para rodar os testes simplesmente rode:
+Para rodar os testes rode no seu console o comando:
 ```sh
 $ rspec
 ```
