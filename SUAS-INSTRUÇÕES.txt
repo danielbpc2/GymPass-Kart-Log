@@ -1,0 +1,8 @@
+Olá! neste arquivo venho trazer algumas observações e comentarios sobre o projeto, nada necessário para rodar o programa e fazer tudo funcionar, para isto cheque o readme.md
+
+Primeiro gostaria de agradecer a oportunidade e comentar um pouco sobre o projeto, este projeto me foi um tanto divertido de se fazer, inicialmente acredito ter ultra complicado a solução por estar um pouco nervoso, porem após algumas horas codando consegui me encontrar, eu acabei decidindo ir por um caminho de MVC por causa que este desafio me lembrava uns exercicios que fiz quando estava aprendendo a codar em Ruby.
+
+Inicialmente fiz um helper que transforma o log .txt em um csv, e usei o csv durante projeto todo, porem perto de terminar fiz um metodo dentro do helper.rb que cria um arquivo em JSON com o log em txt, não utilizei esse helper para nada, porem criei com a intenção de não usar o csv, já que tenho certa preferência por JSON (provavelmente por estar aprendendo a codar em React no momento).
+
+Acredito que isto é tudo, muito obrigado.
+
