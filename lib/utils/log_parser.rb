@@ -24,6 +24,7 @@ def create_csv_from_txt(txt_file_path)
   return "./db/kart_log.csv"
 end
 
+# Takes a TXT and create a JSON of it and return a string with its directory
 def create_json_from_txt(txt_file_path)
   record_lines = []
   objects = {}
@@ -46,5 +47,6 @@ def create_json_from_txt(txt_file_path)
       objects[line[2]].store(:voltas, {}) if objects[line[2]][:voltas] == nil
       objects[line[2]][:voltas].store( line[3], {hora: line[0], tempo: line[4], vel_med: line[5]})
   end
-  File.write('../../db/kart_log.json',JSON.generate(objects))
+  File.write('./db/kart_log.json',JSON.generate(objects))
+  return "./db/kart_log.json"
 end

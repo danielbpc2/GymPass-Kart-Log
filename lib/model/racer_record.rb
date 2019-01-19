@@ -1,4 +1,5 @@
 # All racer records saved in this constant
+# todos os logs dos corredores são salvos nessa constante
 RACER_RECORDS = []
 
 class RacerRecord
@@ -9,6 +10,7 @@ class RacerRecord
     @codigo = codigo
     @voltas = n_volta
     # saves the instance inside the RACER_RECORDS constant
+    # salva instancias dentro de RACER_RECORDS
     RACER_RECORDS << self
   end
 
@@ -22,6 +24,7 @@ class RacerRecord
   end
 
   #  returns racer average speed through the race
+  # retorna a media de velocidade do piloto durante a corrida
   def avg_speed
     speeds = []
     self.voltas.each { |lap_num, lap_stat| speeds << lap_stat[:vel_med].to_f}
@@ -29,6 +32,7 @@ class RacerRecord
   end
 
   #  returns racer average time laps through the race
+  #  returna a media de tempo das voltas durante a corrida
   def avg_time_lap
     times = []
     self.voltas.each { |lap_num, lap_stat| times << time_in_ms(lap_stat[:tempo])}
@@ -36,6 +40,7 @@ class RacerRecord
   end
 
   #  returns sum of all laps times
+  #  retorna a soma dos tempos das voltas
   def times_sum
     time_sum = 0
     self.voltas.each { |lap_num, lap_stat| time_sum += time_in_ms(lap_stat[:tempo])}
@@ -44,6 +49,7 @@ class RacerRecord
 
   private
   # Load csv and instanciate all race records
+  # carrega o csv e instacia todos os RaceRecords
   def self.load_all_records(csv_file_path)
     racers_hash = {}
     filepath = csv_file_path
